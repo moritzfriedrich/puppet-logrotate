@@ -3,7 +3,9 @@
 # Examples
 #
 #   include logrotate::base
-class logrotate::base {
+class logrotate::base (
+  ) inherits logrotate::params {
+
   package { 'logrotate':
     ensure => latest,
   }
@@ -15,10 +17,6 @@ class logrotate::base {
   }
 
   file {
-    '/etc/logrotate.conf':
-      ensure  => file,
-      mode    => '0444',
-      source  => 'puppet:///modules/logrotate/etc/logrotate.conf';
     '/etc/logrotate.d':
       ensure  => directory,
       mode    => '0755';
@@ -40,4 +38,6 @@ class logrotate::base {
     }
     default: { }
   }
+
+  include logrotate::conf
 }

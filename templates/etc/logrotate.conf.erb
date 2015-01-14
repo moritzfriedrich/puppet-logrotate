@@ -1,0 +1,21 @@
+# THIS FILE IS AUTOMATICALLY DISTRIBUTED BY PUPPET.  ANY CHANGES WILL BE
+# OVERWRITTEN.
+
+# Rotate log files set under this user and group instead of using default user/group (usually root).
+# user  specifies the user name used for rotation and group specifies the group used for rotation.
+# If the user/group you specify here does not have sufficient privilege to make files with
+# the ownership you've specified in a  create  instruction,  it will cause an error.
+su <%= @default_user %> <%= @default_group %>
+
+# Default values
+# rotate log files weekly
+weekly
+
+# keep 4 weeks worth of backlogs
+rotate 4
+
+# create new (empty) log files after rotating old ones
+create
+
+# packages drop log rotation information into this directory
+include /etc/logrotate.d
